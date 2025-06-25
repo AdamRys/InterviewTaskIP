@@ -10,35 +10,37 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.LoginHelper;
+import utils.WaitHelpers;
 
-import java.time.Duration;
 
 public class AppLaunchTest extends BaseTest {
     private LoginPage loginPage;
     private MainPage mainPage;
+    private WaitHelpers wait;
+    private LoginHelper loginHelper;
 
     @BeforeEach
     public void initPages() {
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
+        wait = new WaitHelpers(driver, 10);
+        loginHelper = new LoginHelper(driver);
     }
 
     @Test
     public void shouldLaunchApp() {
-        System.out.println("Ścieżka do APK: " + Config.getAppPath());
+        System.out.println("Path to app: " + Config.getAppPath());
 
         String currentActivity = ((AndroidDriver) driver).currentActivity();
-        System.out.println("Aktualna aktywność po starcie aplikacji: " + currentActivity);
+        System.out.println("Actual activity after start of app: " + currentActivity);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement el = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*")));
-        Assertions.assertNotNull(el, "Aplikacja się nie uruchomiła poprawnie, brak elementów UI");
+        WebElement el = wait.waitForVisibility(By.xpath("//*"));
+        Assertions.assertNotNull(el, "App is not loaded correctly, there are UI elements missing");
     }
     @Test
     public void testLogin(){
-        loginPage.login("standard_user", "secret_sauce");
-        Assertions.assertTrue(mainPage.isLoaded(), "Main page nie załadowała się po zalogowaniu");
+        loginHelper.loginAsStandardUser();
+        Assertions.assertTrue(mainPage.isLoaded(), "Main page is not loaded after log in");
     }
 }

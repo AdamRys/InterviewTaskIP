@@ -7,11 +7,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.ElementActions;
+import utils.WaitHelpers;
 
 import java.time.Duration;
 
 public class LoginPage {
     private AppiumDriver driver;
+    private ElementActions actions;
+    private WaitHelpers wait;
 
     @AndroidFindBy(accessibility = "test-Username")
     private WebElement usernameField;
@@ -25,15 +29,16 @@ public class LoginPage {
     public LoginPage(AppiumDriver driver){
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver, Duration.ofSeconds(30)), this);
+        this.actions = new ElementActions(driver, 10);
+        this.wait = new WaitHelpers(driver, 10);
     }
 
     public void login(String username, String password) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(usernameField));
+        wait.waitForVisibility(usernameField);
 
         usernameField.sendKeys(username);
         passwordField.sendKeys(password);
-        loginButton.click();
+        actions.click(loginButton);
 
     }
 }

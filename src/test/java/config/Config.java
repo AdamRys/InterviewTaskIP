@@ -28,5 +28,11 @@ public class Config {
     public static String getAppiumServer() {
         return dotenv.get("APPIUM_SERVER");
     }
+    public static String getTestUser() {
+        return dotenv.get("TEST_USER");
+    }
+    public static String getTestPassword() {
+        return dotenv.get("TEST_PASSWORD");
+    }
 }
 
