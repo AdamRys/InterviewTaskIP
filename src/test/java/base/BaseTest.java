@@ -9,7 +9,7 @@ import pages.MainPage;
 
 public class BaseTest {
     protected AppiumDriver driver;
-    
+
     @BeforeEach
     public void setup() {
         System.out.println("Setup testu - pobieranie drivera");
