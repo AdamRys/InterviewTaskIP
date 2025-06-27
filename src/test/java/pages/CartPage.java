@@ -31,6 +31,9 @@ public class CartPage {
     @AndroidFindBy(accessibility = "test-CHECKOUT")
     private WebElement checkoutButton;
 
+    @AndroidFindBy(accessibility = "test-REMOVE")
+    private WebElement removeButton;
+
     public boolean isCartVisible(){
         return actions.isVisible(cartTitle);
     }
@@ -47,6 +50,10 @@ public class CartPage {
         wait.waitForClickable(checkoutButton);
         actions.click(checkoutButton);
     }
+    public void clickRemoveButton() {
+        removeButton.click();
+    }
+
 
 
 
