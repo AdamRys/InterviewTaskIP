@@ -27,6 +27,9 @@ Tests are written in Java, using JUnit 5, Selenium, and Appium, targeting primar
 - **pages** — Page Object Model classes for UI abstraction
 - **tests** — test cases organized by features
 - **utils** — helper utilities (login, data preparation)
+- **config** — configuration files for the project, such as environment settings and test parameters
+- **data** — static test data like sample users, products, and form values
+- **driver** — classes managing Appium/Selenium driver initialization and related resources
 
 ---
 
