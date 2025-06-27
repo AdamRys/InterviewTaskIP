@@ -16,9 +16,8 @@ public class BaseTest {
 
     @BeforeEach
     public void setup() {
-        AppiumDriver driver = DriverFactory.createDriver(PlatformConfig.getPlatformName());
+        driver = DriverFactory.createDriver(PlatformConfig.getPlatformName());
         DriverManager.setDriver(driver);
-//
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
     }

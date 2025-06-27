@@ -3,10 +3,9 @@ package pages;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.ElementActions;
 import utils.WaitHelpers;
 
@@ -23,8 +22,11 @@ public class LoginPage {
     @AndroidFindBy(accessibility = "test-Password")
     private WebElement passwordField;
 
-    @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-LOGIN\"]/android.widget.TextView")
+    @AndroidFindBy(accessibility = "test-LOGIN")
     private WebElement loginButton;
+
+    @AndroidFindBy(accessibility =  "test-Error message")
+    private WebElement errorMessage;
 
     public LoginPage(AppiumDriver driver){
         this.driver = driver;
@@ -35,10 +37,15 @@ public class LoginPage {
 
     public void login(String username, String password) {
         wait.waitForVisibility(usernameField);
-
         usernameField.sendKeys(username);
         passwordField.sendKeys(password);
         actions.click(loginButton);
 
+    }
+    public boolean isErrorMessageVisible(){
+        return errorMessage.isDisplayed();
+    }
+    public String getErrorMessageText() {
+        return errorMessage.findElement(By.className("android.widget.TextView")).getText();
     }
 }

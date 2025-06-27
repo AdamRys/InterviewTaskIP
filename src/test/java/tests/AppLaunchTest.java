@@ -2,6 +2,7 @@ package tests;
 
 import base.BaseTest;
 import config.Config;
+import driver.DriverManager;
 import org.junit.jupiter.api.BeforeEach;
 import pages.LoginPage;
 import pages.MainPage;
@@ -21,6 +22,7 @@ public class AppLaunchTest extends BaseTest {
 
     @BeforeEach
     public void initPages() {
+        driver = DriverManager.getDriver();
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
         wait = new WaitHelpers(driver, 10);

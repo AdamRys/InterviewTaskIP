@@ -1,8 +1,7 @@
 package config;
 
-import io.github.cdimascio.dotenv.Dotenv;
-
 public class PlatformConfig {
+
 
     public static String getPlatformName() {
         return System.getenv().getOrDefault("PLATFORM_NAME", "Android");

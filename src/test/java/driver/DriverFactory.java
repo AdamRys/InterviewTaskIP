@@ -43,8 +43,6 @@ public class DriverFactory {
             caps.setCapability("platformVersion", PlatformConfig.getPlatformVersion());
             caps.setCapability("bundleId", PlatformConfig.getBundleId());
 
-            // dodaj więcej capability jeśli potrzeba
-
             try {
                 driver = new IOSDriver(new URL(PlatformConfig.getAppiumServer()), caps);
             } catch (MalformedURLException e) {
