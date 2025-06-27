@@ -1,6 +1,8 @@
 package base;
 
+import driver.DriverFactory;
 import driver.DriverManager;
+import config.PlatformConfig;
 import io.appium.java_client.AppiumDriver;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +16,9 @@ public class BaseTest {
 
     @BeforeEach
     public void setup() {
-        driver = DriverManager.getDriver();
+        AppiumDriver driver = DriverFactory.createDriver(PlatformConfig.getPlatformName());
+        DriverManager.setDriver(driver);
+//
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
     }

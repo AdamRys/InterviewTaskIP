@@ -15,7 +15,6 @@ import utils.WaitHelpers;
 
 
 public class AppLaunchTest extends BaseTest {
-    private LoginPage loginPage;
     private MainPage mainPage;
     private WaitHelpers wait;
     private LoginHelper loginHelper;

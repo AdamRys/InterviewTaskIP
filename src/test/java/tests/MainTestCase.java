@@ -3,6 +3,7 @@ package tests;
 import base.BaseTest;
 import data.ProductData;
 import data.UserData;
+import driver.DriverManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -26,6 +27,7 @@ public class MainTestCase extends BaseTest {
 
     @BeforeEach
     public void setupPages() {
+        driver = DriverManager.getDriver();
         mainPage = new MainPage(driver);
         cartPage = new CartPage(driver);
         loginHelper = new LoginHelper(driver);
@@ -66,7 +68,7 @@ public class MainTestCase extends BaseTest {
                 checkoutOverviewPage.isProductPriceCorrect("$" + String.format("%.2f", ProductData.BACKPACK.getPrice())),
                 "Incorrect price of product in overview");
     }
-
+    //Complete Required TestCase
     @Test
     @DisplayName("Final Test Case (pt.1-5)")
     void completePurchaseProcess(){
