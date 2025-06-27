@@ -4,6 +4,7 @@ import base.BaseTest;
 import config.Config;
 import driver.DriverManager;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import pages.LoginPage;
 import pages.MainPage;
 import io.appium.java_client.android.AndroidDriver;
@@ -14,7 +15,7 @@ import org.openqa.selenium.WebElement;
 import utils.LoginHelper;
 import utils.WaitHelpers;
 
-
+@DisplayName("Intro TC - Not from task, just for check")
 public class AppLaunchTest extends BaseTest {
     private MainPage mainPage;
     private WaitHelpers wait;

@@ -17,12 +17,12 @@ public class WaitHelpers {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
     }
     //waiting for visibility of element (using WebElement with @FindBy)
-        public WebElement waitForVisibility(WebElement element) {
-            return wait.until(ExpectedConditions.visibilityOf(element));
+    public WebElement waitForVisibility(WebElement element) {
+        return wait.until(ExpectedConditions.visibilityOf(element));
     }
     //waiting for element to be clickable (using WebElement with @FindBy)
-        public WebElement waitForClickable(WebElement element) {
-            return wait.until(ExpectedConditions.elementToBeClickable(element));
+    public WebElement waitForClickable(WebElement element) {
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
     //waiting for visibility of element (By locator)
     public WebElement waitForVisibility(By locator) {
