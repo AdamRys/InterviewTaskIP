@@ -13,6 +13,8 @@ import utils.ElementActions;
 import utils.WaitHelpers;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainPage {
     private AppiumDriver driver;
@@ -24,6 +26,19 @@ public class MainPage {
 
     @AndroidFindBy(accessibility = "test-Cart")
     private WebElement cartButton;
+
+    @AndroidFindBy(accessibility = "test-Modal Selector Button")
+    private WebElement filterButton;
+
+    @AndroidFindBy(accessibility = "Selector container")
+    private WebElement selectorContainer;
+
+    @AndroidFindBy(accessibility = "test-Item title")
+    private List<WebElement> productTitles;
+
+    @AndroidFindBy(accessibility = "test-Price")
+    private List<WebElement> productPrices;
+
 
     public MainPage(AppiumDriver driver){
         this.driver = driver;
@@ -51,5 +66,56 @@ public class MainPage {
     public void openCart(){
         wait.waitForClickable(cartButton);
         actions.click(cartButton);
+    }
+    public void openFilterSelector() {
+        filterButton.click();
+    }
+
+    public void selectSortByNameAscending(String label) {
+        List<WebElement> options = selectorContainer.findElements(By.className("android.widget.TextView"));
+        for (WebElement option : options) {
+            if (option.getText().equals(label)) {
+                option.click();
+                break;
+            }
+        }
+    }
+    public List<String> getProductTitles() {
+        return productTitles.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+    }
+    public void selectSortByPriceAscending(String label) {
+        List<WebElement> options = selectorContainer.findElements(By.className("android.widget.TextView"));
+        for (WebElement option : options) {
+            if (option.getText().equals(label)) {
+                option.click();
+                break;
+            }
+        }
+    }
+    public List<Double> getProductPrices() {
+        return productPrices.stream()
+                .map(w -> Double.parseDouble(w.getText().replace("$", "").trim()))
+                .collect(Collectors.toList());
+    }
+    public void selectSortByNameDescending(String label) {
+        List<WebElement> options = selectorContainer.findElements(By.className("android.widget.TextView"));
+        for (WebElement option : options) {
+            if (option.getText().equals(label)) {
+                option.click();
+                break;
+            }
+        }
+    }
+
+    public void selectSortByPriceDescending(String label) {
+        List<WebElement> options = selectorContainer.findElements(By.className("android.widget.TextView"));
+        for (WebElement option : options) {
+            if (option.getText().equals(label)) {
+                option.click();
+                break;
+            }
+        }
     }
 }
