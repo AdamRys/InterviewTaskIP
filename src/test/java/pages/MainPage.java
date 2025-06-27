@@ -1,5 +1,6 @@
 package pages;
 
+import data.ProductData;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -39,9 +40,9 @@ public class MainPage {
             return false;
         }
     }
-    public void clickAddToCartByProductName(String productName) {
+    public void clickAddToCartByProductName(ProductData product) {
         By addToCartBtn = By.xpath(
-                "//android.widget.TextView[@content-desc='test-Item title' and @text='" + productName + "']" +
+                "//android.widget.TextView[@content-desc='test-Item title' and @text='" + product.getName() + "']" +
                         "/ancestor::android.view.ViewGroup[@content-desc='test-Item']" +
                         "//android.view.ViewGroup[@content-desc='test-ADD TO CART']"
         );

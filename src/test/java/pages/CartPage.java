@@ -28,10 +28,13 @@ public class CartPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='YOUR CART']")
     private WebElement cartTitle;
 
+    @AndroidFindBy(accessibility = "test-CHECKOUT")
+    private WebElement checkoutButton;
+
     public boolean isCartVisible(){
         return actions.isVisible(cartTitle);
     }
-    public boolean isProductInCart(String productName) {
+    public boolean isProductInCartVisible(String productName) {
         try {
             By productTitle = By.xpath("//android.widget.TextView[@text='" + productName + "']");
             wait.waitForVisibility(productTitle);
@@ -40,6 +43,11 @@ public class CartPage {
             return false;
         }
     }
+    public void goToCheckout(){
+        wait.waitForClickable(checkoutButton);
+        actions.click(checkoutButton);
+    }
+
 
 
 

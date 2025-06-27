@@ -1,7 +1,7 @@
 package utils;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class ElementActions {
@@ -39,5 +39,11 @@ public class ElementActions {
         } catch (Exception e) {
             return false;
         }
+    }
+    public void scrollToElementByAccessibilityId(String accessibilityId) {
+        String uiSelector = "new UiScrollable(new UiSelector().scrollable(true))"
+                + ".scrollIntoView(new UiSelector().description(\"" + accessibilityId + "\"))";
+
+        driver.findElement(AppiumBy.androidUIAutomator(uiSelector));
     }
 }
